@@ -9,7 +9,12 @@ class Program
             "Bolas de Fuego","Bolas Negras");
         Console.WriteLine("I cast: ");
         Console.WriteLine(MagoTest.hechizo2);
+
+        Brujo BrujoTest = new Brujo("Enrique");
+        Brujo BrujoTest2 = new Brujo("Miguel");
+
+        Combate pelea = new Combate();
         
-        
+        pelea.combate(BrujoTest2,BrujoTest);
     }
 }

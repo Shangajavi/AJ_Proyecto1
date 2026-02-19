@@ -21,6 +21,7 @@ public class Combate
         do
         {
             Iniciativa(p1, p2);
+            Console.WriteLine($"{p1.nombre} ha sacado {p1.iniciativa}, y {p2.nombre} ha sacado {p2.iniciativa}");
             if (p1.iniciativa > p2.iniciativa)
             {
                 primero = p1;
@@ -31,13 +32,25 @@ public class Combate
                 primero = p2;
                 segundo = p1;
             }
+            Console.WriteLine($"{primero.nombre} va primero y {segundo.nombre} va segundo");
         } while (p1.iniciativa == p2.iniciativa);
 
-        while (p1.vida >=0 || p2.vida >=0)
+        while (p1.vida >0 && p2.vida >0)
         {
-            
-            segundo.vida -= ElegirAtaque(primero);
-            primero.vida -= ElegirAtaque(segundo);
+
+            int ataque1 = ElegirAtaque(primero);
+            Console.WriteLine($"{primero.nombre} ha hecho {ataque1}");
+            segundo.vida -= ataque1;
+            if (segundo.vida <= 0)
+            {
+                break;
+            }
+            Console.WriteLine($"{segundo.nombre} tiene {segundo.vida}");
+            int ataque2 = ElegirAtaque(segundo);
+            Console.WriteLine($"{segundo.nombre} ha hecho {ataque2}");
+            primero.vida -= ataque2;
+            Console.WriteLine($"{primero.nombre} tiene {primero.vida}");
+            Thread.Sleep(3000);
             
         }
 
@@ -55,7 +68,14 @@ public class Combate
         int modificador = (int)Math.Floor((atributo - 10) / 2.0); //Lo que hace (int)Math.Floor() es truncar hacia abajo
         int dado = rng.Next(1,tipodado+1);
 
-        return dado + modificador;
+        if ((dado + modificador) <= 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return dado + modificador;
+        }
     }
 
     public int ElegirAtaque(Personaje p)
