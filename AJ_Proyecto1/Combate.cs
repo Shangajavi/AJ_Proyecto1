@@ -51,7 +51,6 @@ public class Combate
             primero.vida -= ataque2;
             Console.WriteLine($"{primero.nombre} tiene {primero.vida}");
             Thread.Sleep(3000);
-            
         }
 
 
@@ -70,10 +69,12 @@ public class Combate
 
         if ((dado + modificador) <= 0)
         {
+            Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
             return 0;
         }
         else
         {
+            Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
             return dado + modificador;
         }
     }

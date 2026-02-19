@@ -8,7 +8,7 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
     
     //No estoy seguro si esto es correcto pero considero que esto está ma o menos bien...
     public Mago(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma,
-        string hechizo2, string hechizo3) : base(nombre,destreza,fuerza,constitucion, inteligencia, sabiduria, carisma)
+        string hechizo2, string hechizo3) : base(nombre)
     {
         destreza = 13;
         fuerza = 8;

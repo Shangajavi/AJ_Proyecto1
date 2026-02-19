@@ -12,18 +12,13 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public int sabiduria;   //Druida
     public int carisma; //Brujo
     public int ataque1 = 4;
-    public int vida;
+    public int vida = 8;
     public int iniciativa;
     public bool player;
 
-    public Personaje(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma, bool player=false)
+    public Personaje(string nombre,bool player=false)
     {
         this.nombre = nombre;
-        this.fuerza = fuerza;
-        this.constitucion = constitucion;
-        this.inteligencia = inteligencia;
-        this.sabiduria = sabiduria;
-        this.carisma = carisma;
         this.player = player;
     }
 }

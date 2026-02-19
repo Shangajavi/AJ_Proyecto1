@@ -5,9 +5,16 @@ public class Brujo : Personaje
     public string ataque2;
     public string ataque3;
 
-    public Brujo(string nombre,int destreza = 13, int fuerza = 8, int constitucion = 14, int inteligencia = 10, int sabiduria = 12, int carisma = 15, int vida = 8) : base(nombre,destreza,fuerza,constitucion, inteligencia, sabiduria, carisma)
+    public Brujo(string nombre, bool player = false) : base(nombre,player)
     {
         this.nombre = nombre;
+        this.destreza = 13;
+        this.fuerza = 8;
+        this.constitucion = 14;
+        this.inteligencia = 15;
+        this.sabiduria = 12;
+        this.carisma = 10;
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
+        this.player = player;
     }
 }

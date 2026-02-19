@@ -6,7 +6,7 @@ public class Druida : Personaje
     public string ataque3;
 
     public Druida(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma,
-        string ataque2, string ataque3) : base(nombre,destreza,fuerza,constitucion, inteligencia, sabiduria, carisma)
+        string ataque2, string ataque3) : base(nombre)
     {
         destreza = 13;
         fuerza = 10;

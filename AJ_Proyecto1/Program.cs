@@ -16,5 +16,6 @@ class Program
         Combate pelea = new Combate();
         
         pelea.combate(BrujoTest2,BrujoTest);
+        // La vida va medio rara y los ataques solo dan 0
     }
 }
