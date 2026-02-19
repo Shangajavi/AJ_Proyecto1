@@ -5,12 +5,13 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public string nombre;   //Por si quieres introducir un nombre
     
     // Estás ya son las stats
-    public int destreza;
-    public int fuerza;
-    public int constitucion;
-    public int inteligencia;
-    public int sabiduria;
-    public int carisma;
+    public int destreza;    //Picaro
+    public int fuerza;  //Barbaro
+    public int constitucion;    //Nadie
+    public int inteligencia;    //Mago
+    public int sabiduria;   //Druida
+    public int carisma; //Brujo
+    public int ataque1 = 1;
 
     public Personaje(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma)
     {
@@ -21,5 +22,6 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
         this.inteligencia = inteligencia;
         this.sabiduria = sabiduria;
         this.carisma = carisma;
+        
     }
 }
