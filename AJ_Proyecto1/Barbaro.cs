@@ -2,20 +2,14 @@
 
 public class Barbaro : Personaje
 {
-    public string ataque2;
-    public string ataque3;
+    public int ataqueConFuerza = 12;
+    public int bofetonHistorico = 10;
+    public int furia;
 
-    public Barbaro(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma,
-        string ataque2, string ataque3) : base(nombre,destreza,fuerza,constitucion, inteligencia, sabiduria, carisma)
+    public Barbaro(string nombre,int destreza = 14, int fuerza = 14, int constitucion = 14, int inteligencia = 10, int sabiduria = 12,
+        int carisma = 8) : base(nombre,destreza,fuerza,constitucion, inteligencia, sabiduria, carisma)
     {
-        destreza = 14;
-        fuerza = 14;
-        constitucion = 14;
-        inteligencia = 10;
-        sabiduria = 12;
-        carisma = 8;
-        this.ataque2 = ataque2;
-        this.ataque3 = ataque3;
+        this.nombre = nombre;
     }
 
 
