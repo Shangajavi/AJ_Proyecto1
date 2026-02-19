@@ -19,7 +19,6 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public Personaje(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma, bool player=false)
     {
         this.nombre = nombre;
-        this.destreza = destreza;
         this.fuerza = fuerza;
         this.constitucion = constitucion;
         this.inteligencia = inteligencia;
