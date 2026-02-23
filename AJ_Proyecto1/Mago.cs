@@ -7,17 +7,23 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
     public string hechizo3;
     
     //No estoy seguro si esto es correcto pero considero que esto está ma o menos bien...
-    public Mago(string nombre,int destreza, int fuerza, int constitucion, int inteligencia, int sabiduria, int carisma,
-        string hechizo2, string hechizo3) : base(nombre)
+    public Mago(string nombre, bool player = false) 
+        : base(nombre, player)
     {
-        destreza = 13;
-        fuerza = 8;
-        constitucion = 14;
-        inteligencia = 15;
-        sabiduria = 12;
-        carisma = 10;
-        this.hechizo2 = hechizo2;
-        this.hechizo3 = hechizo3;
+        this.nombre = nombre;
+
+        // Atributos base del Mago
+        this.destreza = 13;
+        this.fuerza = 8;
+        this.constitucion = 14;
+        this.inteligencia = 15;
+        this.sabiduria = 12;
+        this.carisma = 10;
+
+        // Ajuste de vida según Constitución
+        this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
+
+        this.player = player;
     }
 
 

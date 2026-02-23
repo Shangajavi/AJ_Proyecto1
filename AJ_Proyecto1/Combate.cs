@@ -11,7 +11,7 @@ public class Combate
 
     
     
-    public void combate(Personaje p1, Personaje p2)
+    public void Pelea(Personaje p1, Personaje p2)
     {
         
 
@@ -43,6 +43,7 @@ public class Combate
             segundo.vida -= ataque1;
             if (segundo.vida <= 0)
             {
+                segundo.vida = 0;
                 break;
             }
             Console.WriteLine($"{segundo.nombre} tiene {segundo.vida}");
@@ -62,10 +63,10 @@ public class Combate
         p2.iniciativa = LanzarDado(p2.destreza);
     }
 
-    public int LanzarDado(int atributo, int tipodado=20)
+    public int LanzarDado(int atributo, int tipoDado=20)
     {
         int modificador = (int)Math.Floor((atributo - 10) / 2.0); //Lo que hace (int)Math.Floor() es truncar hacia abajo
-        int dado = rng.Next(1,tipodado+1);
+        int dado = rng.Next(1,tipoDado+1);
 
         if ((dado + modificador) <= 0)
         {

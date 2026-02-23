@@ -5,17 +5,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Mago MagoTest = new Mago("Jorge",1,1,2,3,4,5, 
-            "Bolas de Fuego","Bolas Negras");
-        Console.WriteLine("I cast: ");
-        Console.WriteLine(MagoTest.hechizo2);
 
-        Brujo BrujoTest = new Brujo("Enrique");
+        Mago BrujoTest = new Mago("Enrique");
         Brujo BrujoTest2 = new Brujo("Miguel");
 
         Combate pelea = new Combate();
         
-        pelea.combate(BrujoTest2,BrujoTest);
+        pelea.Pelea(BrujoTest2,BrujoTest);
         // La vida va medio rara y los ataques solo dan 0
     }
 }
