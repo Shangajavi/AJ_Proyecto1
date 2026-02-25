@@ -2,8 +2,8 @@
 
 public class Brujo : Personaje
 {
-    public string ataque2;
-    public string ataque3;
+    public int eldritchBlast = 10;
+    public int witchBolt = 8;
 
     public Brujo(string nombre, bool player = false) : base(nombre,player)
     {

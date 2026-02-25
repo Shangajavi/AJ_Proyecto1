@@ -2,8 +2,8 @@
 
 public class Druida : Personaje
 {
-    public string ataque2;
-    public string ataque3;
+    public int produceFlame = 8;
+    public int thornWhip = 6;
 
     public Druida(string nombre, bool player = false)
         : base(nombre, player)

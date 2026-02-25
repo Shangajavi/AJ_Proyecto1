@@ -2,8 +2,8 @@
 
 public class Picaro : Personaje
 {
-    public string ataque2;
-    public string ataque3;
+    public int ataqueFurtvio = 6;
+    public int armaArrojadiza = 4;
 
     public Picaro(string nombre, string ataque2, string ataque3, bool player = false)
         : base(nombre, player)

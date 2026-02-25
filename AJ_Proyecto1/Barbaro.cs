@@ -2,8 +2,8 @@
 
 public class Barbaro : Personaje
 {
-    public string ataque2;
-    public string ataque3;
+    public int ataqueConFuerza = 12;
+    public int bofeton = 10;
 
     public Barbaro(string nombre, bool player = false)
         : base(nombre, player)
