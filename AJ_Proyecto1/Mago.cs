@@ -3,10 +3,13 @@
 public class Mago : Personaje //Estoy probando con la primera clase, que he llamado el mago...
 {
     // En teoría un mago tiene un total de 6 hechizos de nivel un, pero para esta prueba solo le voy a dar 2
-    public int fireBall = 8;
-    public int rayo = 12;
+    public Ataque FireBall;
+    public Ataque Rayo;
+    public Ataque Bastonazo;
+    public Ataque ArmaduraDeMago;
+
     
-    //No estoy seguro si esto es correcto pero considero que esto está ma o menos bien...
+    //No estoy seguro si esto es correcto, pero considero que esto está ma o menos bien...
     public Mago(string nombre, bool player = false) 
         : base(nombre, player)
     {
@@ -19,7 +22,18 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
         this.inteligencia = 15;
         this.sabiduria = 12;
         this.carisma = 10;
-
+        
+        
+        this.FireBall = new Ataque("Fire Ball",8,inteligencia);
+        this.Rayo = new Ataque("Rayo",12,inteligencia);
+        this.Bastonazo = new Ataque("bastonazo",6,fuerza);
+        this.ArmaduraDeMago = new Ataque("Armadura De Mago",6,constitucion);
+        List<Ataque> ataques = new List<Ataque>{FireBall,Rayo,Bastonazo,ArmaduraDeMago};
+        
+        
+        
+        
+        
         // Ajuste de vida según Constitución
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
 

@@ -2,8 +2,11 @@
 
 public class Barbaro : Personaje
 {
-    public int ataqueConFuerza = 12;
-    public int bofeton = 10;
+    public Ataque ataqueConFuerza;
+    public Ataque bofeton;
+    public Ataque furia;
+    public Ataque lanzarLanza;
+    
 
     public Barbaro(string nombre, bool player = false)
         : base(nombre, player)
@@ -17,7 +20,14 @@ public class Barbaro : Personaje
         this.inteligencia = 10;
         this.sabiduria = 12;
         this.carisma = 8;
-
+        
+        this.ataqueConFuerza = new Ataque("Ataque Con Fuerza",12,fuerza);
+        this.bofeton = new Ataque("Bofeton",8,fuerza);
+        this.furia = new Ataque("furia",6,fuerza);
+        this.lanzarLanza = new Ataque("Lanzar Lanza",6,fuerza);
+        List<Ataque> ataques = new List<Ataque>{ataqueConFuerza, bofeton, furia, lanzarLanza};
+        
+        
         // Ajuste de vida según Constitución
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
 
