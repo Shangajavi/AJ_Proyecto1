@@ -6,7 +6,7 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
     public int fireBall = 8;
     public int rayo = 12;
     
-    //No estoy seguro si esto es correcto pero considero que esto está ma o menos bien...
+    //No estoy seguro si esto es correcto, pero considero que esto está ma o menos bien...
     public Mago(string nombre, bool player = false) 
         : base(nombre, player)
     {
