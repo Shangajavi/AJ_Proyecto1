@@ -23,8 +23,9 @@ public class Barbaro : Personaje
         
         this.ataqueConFuerza = new Ataque("Ataque Con Fuerza",12,fuerza);
         this.bofeton = new Ataque("Bofeton",8,fuerza);
-        this.furia = new Ataque("furia",6,fuerza);
+        this.furia = new Ataque("Furia",6,fuerza);
         this.lanzarLanza = new Ataque("Lanzar Lanza",6,fuerza);
+        
         List<Ataque> ataques = new List<Ataque>{ataqueConFuerza, bofeton, furia, lanzarLanza};
         
         

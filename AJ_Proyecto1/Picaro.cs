@@ -2,8 +2,10 @@
 
 public class Picaro : Personaje
 {
-    public int ataqueFurtvio = 6;
-    public int armaArrojadiza = 4;
+    public Ataque ataqueFurtivo;
+    public Ataque armaArrojadiza;
+    public Ataque cortes;
+    public Ataque accionesAstutas;
 
     public Picaro(string nombre, string ataque2, string ataque3, bool player = false)
         : base(nombre, player)
@@ -15,6 +17,14 @@ public class Picaro : Personaje
         this.inteligencia = 10;
         this.sabiduria = 13;
         this.carisma = 12;
+        
+        this.ataqueFurtivo = new Ataque("Ataque Furtivo",6,destreza);
+        this.armaArrojadiza = new Ataque("Arma Arrojadiza",4,destreza);
+        this.cortes = new Ataque("Cortes",8,destreza);
+        this.accionesAstutas = new Ataque("Acciones Astutas",6,destreza);//aumenta CA
+        
+        List<Ataque> ataques = new List<Ataque>{ataqueFurtivo,armaArrojadiza,cortes,accionesAstutas};
+        
         
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
         

@@ -26,8 +26,9 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
         
         this.FireBall = new Ataque("Fire Ball",8,inteligencia);
         this.Rayo = new Ataque("Rayo",12,inteligencia);
-        this.Bastonazo = new Ataque("bastonazo",6,fuerza);
+        this.Bastonazo = new Ataque("Bastonazo",6,fuerza);
         this.ArmaduraDeMago = new Ataque("Armadura De Mago",6,constitucion);
+        
         List<Ataque> ataques = new List<Ataque>{FireBall,Rayo,Bastonazo,ArmaduraDeMago};
         
         
