@@ -8,9 +8,6 @@ public class Combate
     public Personaje personaje2;
     private Random rng = new Random();
     
-
-    
-    
     public void Pelea(Personaje p1, Personaje p2)
     {
         
