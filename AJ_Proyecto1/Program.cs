@@ -6,21 +6,26 @@ class Program
     static void Main(string[] args)
     {
 
-        /*Mago BrujoTest = new Mago("Enrique");
+        Mago BrujoTest = new Mago("Enrique", true);
         Brujo BrujoTest2 = new Brujo("Miguel");
 
+        List<Personaje> personajes = new List<Personaje>();
+        personajes.Add(BrujoTest);
+        personajes.Add(BrujoTest2);
+        
         Combate pelea = new Combate();
         
-        pelea.Pelea(BrujoTest2,BrujoTest);
-        // La vida va medio rara y los ataques solo dan 0*/
+        pelea.Pelea(personajes);
 
         
-        int numeropersonajes = int.Parse(Console.ReadLine());
+        /*int numeropersonajes = int.Parse(Console.ReadLine());
         
         Partida partida = new Partida(numeropersonajes);
         Mapa mapa = new Mapa(partida.num_personajes, partida.num_personajes);
         
-        mapa.CrearMapa();
+        mapa.CrearMapa();*/
+        
+        
         
     }
 }
