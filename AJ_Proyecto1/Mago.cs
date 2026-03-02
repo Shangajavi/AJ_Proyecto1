@@ -29,7 +29,10 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
         this.Bastonazo = new Ataque("Bastonazo",6,fuerza);
         this.ArmaduraDeMago = new Ataque("Armadura De Mago",6,constitucion);
         
-        List<Ataque> ataques = new List<Ataque>{FireBall,Rayo,Bastonazo,ArmaduraDeMago};
+        ataques.Add(FireBall);
+        ataques.Add(Rayo);
+        ataques.Add(Bastonazo);
+        ataques.Add(ArmaduraDeMago);
         
         
         

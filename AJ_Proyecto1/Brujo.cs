@@ -23,8 +23,10 @@ public class Brujo : Personaje
         this.bastonazo = new Ataque("Bastonazo",6,carisma);
         this.brazosdeHadar = new Ataque("Brazos de Hadar",10,carisma);
         
-        List<Ataque> ataques = new List<Ataque>{eldritchBlast,witchBolt,bastonazo,brazosdeHadar};
-        
+        ataques.Add(eldritchBlast);
+        ataques.Add(witchBolt);
+        ataques.Add(bastonazo);
+        ataques.Add(brazosdeHadar);
         
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
         this.player = player;

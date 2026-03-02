@@ -24,8 +24,10 @@ public class Druida : Personaje
         this.oso = new Ataque("Oso",8,sabiduria);
         this.zancadaProdigiosa = new Ataque("Zancada Prodigiosa",6,sabiduria);//aumenta CA
         
-        List<Ataque> ataques = new List<Ataque>{thornWhip,produceFlame,oso,zancadaProdigiosa};
-        
+        ataques.Add(thornWhip);
+        ataques.Add(produceFlame);
+        ataques.Add(oso);
+        ataques.Add(zancadaProdigiosa);
         
         // Ajuste de vida según Constitución
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);

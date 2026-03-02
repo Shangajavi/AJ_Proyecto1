@@ -23,8 +23,10 @@ public class Picaro : Personaje
         this.cortes = new Ataque("Cortes",8,destreza);
         this.accionesAstutas = new Ataque("Acciones Astutas",6,destreza);//aumenta CA
         
-        List<Ataque> ataques = new List<Ataque>{ataqueFurtivo,armaArrojadiza,cortes,accionesAstutas};
-        
+        ataques.Add(ataqueFurtivo);
+        ataques.Add(armaArrojadiza);
+        ataques.Add(cortes);
+        ataques.Add(accionesAstutas);
         
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
         

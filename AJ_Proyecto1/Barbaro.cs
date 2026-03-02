@@ -26,7 +26,11 @@ public class Barbaro : Personaje
         this.furia = new Ataque("Furia",6,fuerza);
         this.lanzarLanza = new Ataque("Lanzar Lanza",6,fuerza);
         
-        List<Ataque> ataques = new List<Ataque>{ataqueConFuerza, bofeton, furia, lanzarLanza};
+        ataques.Add(ataqueConFuerza);
+        ataques.Add(bofeton);
+        ataques.Add(furia);
+        ataques.Add(lanzarLanza);
+        
         
         
         // Ajuste de vida según Constitución
