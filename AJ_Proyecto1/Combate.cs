@@ -9,45 +9,51 @@ public class Combate
     
     public void Pelea(List<Personaje> personajes)
     {
+        foreach (Personaje personaje in personajes)
+        {
+            Iniciativa(personaje);
+            Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa);
+        }
 
-        while(personajes.Count > 1){
-            foreach (Personaje personaje in personajes)
-            {
-                Iniciativa(personaje);
-                Console.WriteLine(personaje + " ha sacado: " + personaje.iniciativa);
-            }
-
-
+        while (personajes.Count > 1)
+        {
             personajes.Sort((a, b) => b.iniciativa.CompareTo(a.iniciativa));
 
-            List<int> muertos = new List<int>();
+            List<Personaje> muertos = new List<Personaje>();
 
             for (int i = 0; i < personajes.Count; i++)
             {
-                int tamano = personajes.Count;
-                if (tamano == 1) break;
+                if (personajes[i].vida <= 0)
+                    continue;
+
+                if (personajes.Count == 1)
+                    break;
 
                 int objetivo;
                 do
                 {
-                    objetivo = rng.Next(0, tamano);
-                } while (objetivo == i);
+                    objetivo = rng.Next(0, personajes.Count);
+                }
+                while (objetivo == i || personajes[objetivo].vida <= 0);
+                personajes[objetivo].vecesSeleccionado++;
 
-                personajes[objetivo].vida -= ElegirAtaque(personajes[i]);
+                int daño = ElegirAtaque(personajes[i]);
+                personajes[objetivo].vida -= daño;
+
+                Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
+                Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
 
                 if (personajes[objetivo].vida <= 0)
-                    muertos.Add(objetivo);
+                    muertos.Add(personajes[objetivo]);
             }
 
-            muertos.Sort();
-            muertos.Reverse();
-
-            foreach (int muerto in muertos)
+            foreach (var muerto in muertos)
             {
-                personajes.RemoveAt(muerto);
+                personajes.Remove(muerto);
             }
         }
         
+        Console.WriteLine("Ha ganado: " + personajes[0].nombre + ", que se ha quedado con: " + personajes[0].vida + " , que lo han seleccionado: " + personajes[0].vecesSeleccionado);
     }
 
     private void Iniciativa(Personaje p1)
@@ -78,7 +84,7 @@ public class Combate
         {
             for (int i = 1; i < p.ataques.Count+1; i++)
             {
-                Console.WriteLine("Ataque "+ i +": " + p.ataques[i-1]);
+                Console.WriteLine("Ataque "+ i +": " + p.ataques[i-1].nombreAtaque);
             }
             int numero;
             while (!int.TryParse(Console.ReadLine(), out numero) || numero < 1 || numero > p.ataques.Count)

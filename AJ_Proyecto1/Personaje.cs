@@ -18,7 +18,8 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public int maxPosicion;
     private bool isSomeoneHere;
     private Random rndPosition = new  Random();
-    public List<Ataque> ataques;
+    public List<Ataque> ataques = new List<Ataque>();
+    public int vecesSeleccionado=0;
 
 
     public Personaje(string nombre, bool player = false)
