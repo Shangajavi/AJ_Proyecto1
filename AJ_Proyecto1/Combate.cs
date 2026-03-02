@@ -4,63 +4,58 @@ public class Combate
 {
     
     //Atributos
-    public Personaje personaje1;
-    public Personaje personaje2;
+    public List<Personaje> personasInvolucradas = new List<Personaje>();
     private Random rng = new Random();
     
-    public void Pelea(Personaje p1, Personaje p2)
+    public void Pelea(List<Personaje> personajes)
     {
-        
 
-        Personaje primero;
-        Personaje segundo;
-
-        do
-        {
-            Iniciativa(p1, p2);
-            Console.WriteLine($"{p1.nombre} ha sacado {p1.iniciativa}, y {p2.nombre} ha sacado {p2.iniciativa}");
-            if (p1.iniciativa > p2.iniciativa)
+        while(personajes.Count > 1){
+            foreach (Personaje personaje in personajes)
             {
-                primero = p1;
-                segundo = p2;
+                Iniciativa(personaje);
+                Console.WriteLine(personaje + " ha sacado: " + personaje.iniciativa);
             }
-            else
-            {
-                primero = p2;
-                segundo = p1;
-            }
-            Console.WriteLine($"{primero.nombre} va primero y {segundo.nombre} va segundo");
-        } while (p1.iniciativa == p2.iniciativa);
 
-        while (p1.vida >0 && p2.vida >0)
-        {
 
-            int ataque1 = ElegirAtaque(primero);
-            Console.WriteLine($"{primero.nombre} ha hecho {ataque1}");
-            segundo.vida -= ataque1;
-            if (segundo.vida <= 0)
+            personajes.Sort((a, b) => b.iniciativa.CompareTo(a.iniciativa));
+
+            List<int> muertos = new List<int>();
+
+            for (int i = 0; i < personajes.Count; i++)
             {
-                segundo.vida = 0;
-                break;
+                int tamano = personajes.Count;
+                if (tamano == 1) break;
+
+                int objetivo;
+                do
+                {
+                    objetivo = rng.Next(0, tamano);
+                } while (objetivo == i);
+
+                personajes[objetivo].vida -= ElegirAtaque(personajes[i]);
+
+                if (personajes[objetivo].vida <= 0)
+                    muertos.Add(objetivo);
             }
-            Console.WriteLine($"{segundo.nombre} tiene {segundo.vida}");
-            int ataque2 = ElegirAtaque(segundo);
-            Console.WriteLine($"{segundo.nombre} ha hecho {ataque2}");
-            primero.vida -= ataque2;
-            Console.WriteLine($"{primero.nombre} tiene {primero.vida}");
-            Thread.Sleep(3000);
+
+            muertos.Sort();
+            muertos.Reverse();
+
+            foreach (int muerto in muertos)
+            {
+                personajes.RemoveAt(muerto);
+            }
         }
-
-
+        
     }
 
-    private void Iniciativa(Personaje p1, Personaje p2)
+    private void Iniciativa(Personaje p1)
     {
         p1.iniciativa = LanzarDado(p1.destreza);
-        p2.iniciativa = LanzarDado(p2.destreza);
     }
 
-    public int LanzarDado(int atributo, int tipoDado=20)
+    private int LanzarDado(int atributo, int tipoDado=20)
     {
         int modificador = (int)Math.Floor((atributo - 10) / 2.0); //Lo que hace (int)Math.Floor() es truncar hacia abajo
         int dado = rng.Next(1,tipoDado+1);
@@ -77,17 +72,32 @@ public class Combate
         }
     }
 
-    public int ElegirAtaque(Personaje p)
+    private int ElegirAtaque(Personaje p)
     {
         if (p.player)
         {
-            //Funcion que elige ataque
-            return LanzarDado(p.destreza, p.ataque1);
+            for (int i = 1; i < p.ataques.Count+1; i++)
+            {
+                Console.WriteLine("Ataque "+ i +": " + p.ataques[i-1]);
+            }
+            int numero;
+            while (!int.TryParse(Console.ReadLine(), out numero) || numero < 1 || numero > p.ataques.Count)
+            {
+                Console.WriteLine("Número inválido. Elige un ataque entre 1 y " + p.ataques.Count);
+            }
+
+            
+            Console.WriteLine("Ha escogido: " + p.ataques[numero-1].nombreAtaque);
+            
+            return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
         else
         {
-            //Funcion que elige ataque aleatoriamente
-            return LanzarDado(p.destreza, p.ataque1);
+            int numero = rng.Next(1, p.ataques.Count + 1);
+            
+            Console.WriteLine("Ha escogido: " + p.ataques[numero-1].nombreAtaque);
+
+            return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
     }
 }
