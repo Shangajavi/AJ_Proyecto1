@@ -17,40 +17,26 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public bool player;
     public int maxPosicion;
     private bool isSomeoneHere;
-    
+    private Random rndPosition = new  Random();
     public List<Ataque> ataques;
 
 
     public Personaje(string nombre, bool player = false)
     {
         
-        this.nombre = nombre;
+        this.nombre = nombre; 
         this.player = player;
-        int x = 0;
-        int y = 0;
-        //Posicion de x e y para ver donde está cada uno de ellos.
-        //Con esto sacas una posicion random de x y de Y.
-        PosicionX(x);
-        PosicionY(y);
+        
+        int x = Posicion();
+        int y = Posicion();
+
     }
 
-    public int PosicionX(int posicionX)
+    public int Posicion()
     {
-        int Xposition = 0;
-        Random rndX = new Random();
         
-        Xposition = rndX.Next(1,1 + maxPosicion); 
+        int position = rndPosition.Next(1,1 + maxPosicion); 
         
-        return Xposition;
+        return position;
     }
-    public int PosicionY(int posicionY)
-    {
-        int Yposition = 0;
-        Random rndY = new Random();
-        
-        Yposition = rndY.Next(1,1 + maxPosicion); 
-        
-        return Yposition;
-    }
-    
 }
