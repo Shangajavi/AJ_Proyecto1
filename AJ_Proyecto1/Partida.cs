@@ -13,7 +13,13 @@ public class Partida
 
     public void StartGame(List<Personaje> characters)
     {
-        pelea.Pelea(characters);
+        List<Personaje> zone1 = new List<Personaje>();
+        List<Personaje> zone2 = new List<Personaje>();
+        List<Personaje> zone3 = new List<Personaje>();
+        List<Personaje> zone4 = new List<Personaje>();
+        List<Personaje> finalZone = new List<Personaje>();
+        
+        SplitOnSections(zone1,zone2,zone3,zone4, characters);
     }
 
     public void Events(List<Personaje> characters, int numberOfEvent)
@@ -178,5 +184,29 @@ public class Partida
             Console.WriteLine($"{charact.nombre} ha muerto");
             characters.Remove(charact);
         }
+    }
+    
+    private void SplitOnSections(List<Personaje> l1, List<Personaje> l2, List<Personaje> l3, List<Personaje> l4,
+        List<Personaje> characters)
+    {
+        l1.Clear();
+        l2.Clear();
+        l3.Clear();
+        l4.Clear();
+
+        int total = characters.Count;
+        int tam = total / 4; 
+
+        l1.AddRange(characters.Take(tam));
+        l2.AddRange(characters.Skip(tam).Take(tam));
+        l3.AddRange(characters.Skip(tam * 2).Take(tam));
+        
+        l4.AddRange(characters.Skip(tam * 3));
+
+    }
+
+    private void FightingOnThisSection(List<Personaje> characters)
+    {
+        pelea.Pelea(characters);
     }
 }
