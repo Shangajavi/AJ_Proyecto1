@@ -8,12 +8,14 @@ public class Combate
     
     public void Pelea(List<Personaje> personajes)
     {
+        List<Personaje> original = new List<Personaje>(personajes);
+        
         foreach (Personaje personaje in personajes)
         {
             Iniciativa(personaje);
             if (personaje.comment || personaje == personajes[0])
             {
-                Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa);
+                Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa + " en iniciativa");
             }
         }
 
@@ -39,9 +41,10 @@ public class Combate
                 while (objetivo == i || personajes[objetivo].vida <= 0);
                 personajes[objetivo].vecesSeleccionado++;
 
-                int daño = ElegirAtaque(personajes[i]);
+                int daño = ElegirAtaque(personajes[i], original);
                 personajes[objetivo].vida -= daño;
-                if (personajes[0].comment || personajes[i]==personajes[0])
+                if (original[0].comment || personajes[i] == original[0] || personajes[objetivo] == original[0] ||
+                    !(original[0].player))
                 {
                     Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
                     Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
@@ -53,11 +56,15 @@ public class Combate
 
             foreach (var muerto in muertos)
             {
+                Console.WriteLine("Han muerto: " + muerto.nombre);
                 personajes.Remove(muerto);
             }
         }
         
-        Console.WriteLine("Ha ganado: " + personajes[0].nombre + ", que se ha quedado con: " + personajes[0].vida + " , que lo han seleccionado: " + personajes[0].vecesSeleccionado);
+        Console.WriteLine("Ha ganado: " + personajes[0].nombre + ", que se ha quedado con: " 
+                          + personajes[0].vida + " , que lo han seleccionado: " 
+                          + personajes[0].vecesSeleccionado);
+        Thread.Sleep(3000);
     }
 
     private void Iniciativa(Personaje p1)
@@ -82,7 +89,7 @@ public class Combate
         }
     }
 
-    private int ElegirAtaque(Personaje p)
+    private int ElegirAtaque(Personaje p, List<Personaje> characters)
     {
         if (p.player)
         {
@@ -97,15 +104,19 @@ public class Combate
             }
 
             
-            Console.WriteLine("Ha escogido: " + p.ataques[numero-1].nombreAtaque);
+            Console.WriteLine($"{p.nombre} ha escogido: " + p.ataques[numero-1].nombreAtaque);
             
             return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
         else
         {
             int numero = rng.Next(1, p.ataques.Count + 1);
-            
-            Console.WriteLine("Ha escogido: " + p.ataques[numero-1].nombreAtaque);
+            if (characters[0].comment ||
+                !(characters[0].player))
+            {
+                Console.WriteLine($"{p.nombre} ha escogido: " + p.ataques[numero-1].nombreAtaque);
+
+            }
 
             return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }

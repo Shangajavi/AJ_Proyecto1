@@ -6,6 +6,7 @@ public class Partida
     private int tamano_x;
     private int tamano_y;
     private Random rng = new Random();
+    private Combate pelea = new Combate();
 
     public Partida(int num_personajes)
     {
@@ -13,7 +14,11 @@ public class Partida
         tamano_x = num_personajes * 3;
         tamano_y = num_personajes * 3;
     }
-    
+
+    public void StartGame(List<Personaje> characters)
+    {
+        pelea.Pelea(characters);
+    }
     
     
 }

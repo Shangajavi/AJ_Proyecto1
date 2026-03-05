@@ -20,32 +20,35 @@ class Program
             message = GetConsoleMessage("### Welcome to NBAttleRoyale ### \n Do you wanna play? (Y/N)").ToUpper();;
             if(message != "Y" && message != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
         } while (message != "Y" && message != "N");
+        Console.Clear();
 
         do
         {
-            Console.Write("Escribe un número entre 10 y 100: ");
+            Console.Write("Pick a number of Characters on this game (10-100): ");
             valido = int.TryParse(Console.ReadLine(), out numCharacter);
 
             if (!valido)
-                Console.WriteLine("Entrada inválida. Debes escribir un número.");
+                Console.WriteLine("You need to write a number.");
             else if (numCharacter < 10 || numCharacter > 100)
-                Console.WriteLine("El número debe estar entre 10 y 100.");
+                Console.WriteLine("The number need to be between 10 and 100.");
         }
         while (!valido || numCharacter < 10 || numCharacter > 100);
 
-        Console.WriteLine("Número aceptado: " + numCharacter);
-
-        do
-        {
-            comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();;
-            if(comments != "Y" && comments != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
-        } while (comments != "Y" && comments != "N");
-
-        if (comments == "Y") comment = true;
-        else comment = false;
-
+        Console.WriteLine("Number Accepted: " + numCharacter);
+        Thread.Sleep(1000);
+        Console.Clear();
+        
         if (message == "Y")
         {
+            do
+            {
+                comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();;
+                if(comments != "Y" && comments != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
+            } while (comments != "Y" && comments != "N");
+            Console.Clear();
+
+            if (comments == "Y") comment = true;
+            else comment = false;
             do
             {
                 playerClass = GetConsoleMessage("What class do you wanna play with? \n Barbarian (B) \n Sorcerer(S)" +
@@ -77,12 +80,14 @@ class Program
                     characterList.Add(player);
                     break;
             }
-
-            StartGameList(numCharacter, characterList);
-
+            Console.Clear();
         }
         
-        
+        StartGameList(numCharacter, characterList);
+        Thread.Sleep(5000);
+        Console.WriteLine("### LETS THIS GAME STARTED!! ###");
+        game = new Partida(numCharacter);
+        game.StartGame(characterList);
         
 
     }
@@ -129,5 +134,8 @@ class Program
                     break;
             }
         }
+        
+        Console.WriteLine("Barbarians: " + barb + " Sorcerer: " + sorc + " Mage: "
+            + mage + " Druids: " + drui + " Rogues: " + rogu + ", Total characters: "+ characterList.Count);
     }
 }
