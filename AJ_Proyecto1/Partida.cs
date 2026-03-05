@@ -14,4 +14,6 @@ public class Partida
         tamano_y = num_personajes * 3;
     }
     
+    
+    
 }

@@ -8,8 +8,7 @@ public class Barbaro : Personaje
     public Ataque lanzarLanza;
     
 
-    public Barbaro(string nombre, bool player = false)
-        : base(nombre, player)
+    public Barbaro(string nombre, bool player = false, bool comment = false) : base(nombre,player,comment)
     {
         this.nombre = nombre;
 
@@ -37,6 +36,7 @@ public class Barbaro : Personaje
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
 
         this.player = player;
+        this.comment = comment;
     }
 
 

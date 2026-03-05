@@ -39,7 +39,7 @@ public class Combate
 
                 int daño = ElegirAtaque(personajes[i]);
                 personajes[objetivo].vida -= daño;
-
+                
                 Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
                 Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
 

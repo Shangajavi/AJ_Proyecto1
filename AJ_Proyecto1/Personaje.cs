@@ -11,10 +11,10 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public int inteligencia;    //Mago
     public int sabiduria;   //Druida
     public int carisma; //Brujo
-    public int ataque1 = 4;
     public int vida = 8;
     public int iniciativa;
     public bool player;
+    public bool comment;
     public int maxPosicion;
     private bool isSomeoneHere;
     private Random rndPosition = new  Random();
@@ -22,11 +22,12 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public int vecesSeleccionado=0;
 
 
-    public Personaje(string nombre, bool player = false)
+    public Personaje(string nombre, bool player = false, bool comment = false)
     {
         
         this.nombre = nombre; 
         this.player = player;
+        this.comment = comment;
         
         int x = Posicion();
         int y = Posicion();

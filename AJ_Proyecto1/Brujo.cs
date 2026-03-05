@@ -8,7 +8,7 @@ public class Brujo : Personaje
     public Ataque bastonazo;
     public Ataque brazosdeHadar;
 
-    public Brujo(string nombre, bool player = false) : base(nombre,player)
+    public Brujo(string nombre, bool player = false, bool comment = false) : base(nombre,player,comment)
     {
         this.nombre = nombre;
         this.destreza = 13;
@@ -30,5 +30,6 @@ public class Brujo : Personaje
         
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
         this.player = player;
+        this.comment = comment;
     }
 }

@@ -7,8 +7,7 @@ public class Picaro : Personaje
     public Ataque cortes;
     public Ataque accionesAstutas;
 
-    public Picaro(string nombre, string ataque2, string ataque3, bool player = false)
-        : base(nombre, player)
+    public Picaro(string nombre, bool player = false, bool comment = false) : base(nombre,player,comment)
     {
         this.nombre = nombre;
         this.destreza = 15;
@@ -31,5 +30,6 @@ public class Picaro : Personaje
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
         
         this.player = player;
+        this.comment = comment;
     }
 }

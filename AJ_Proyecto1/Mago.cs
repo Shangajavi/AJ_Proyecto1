@@ -10,8 +10,7 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
 
     
     //No estoy seguro si esto es correcto, pero considero que esto está ma o menos bien...
-    public Mago(string nombre, bool player = false) 
-        : base(nombre, player)
+    public Mago(string nombre, bool player = false, bool comment = false) : base(nombre,player,comment)
     {
         this.nombre = nombre;
 
@@ -42,6 +41,7 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
 
         this.player = player;
+        this.comment = comment;
     }
 
 

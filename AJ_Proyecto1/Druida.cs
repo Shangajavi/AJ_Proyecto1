@@ -8,8 +8,7 @@ public class Druida : Personaje
     public Ataque oso;
     public Ataque zancadaProdigiosa;
 
-    public Druida(string nombre, bool player = false)
-        : base(nombre, player)
+    public Druida(string nombre, bool player = false, bool comment = false) : base(nombre,player,comment)
     {
         this.nombre = nombre;
         this.destreza = 13;
@@ -33,5 +32,6 @@ public class Druida : Personaje
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
 
         this.player = player;
+        this.comment = comment;
     }
 }
