@@ -3,21 +3,22 @@
 public class Partida
 {
     public int num_personajes;
-    private int tamano_x;
-    private int tamano_y;
     private Random rng = new Random();
     private Combate pelea = new Combate();
 
     public Partida(int num_personajes)
     {
         this.num_personajes = num_personajes;
-        tamano_x = num_personajes * 3;
-        tamano_y = num_personajes * 3;
     }
 
     public void StartGame(List<Personaje> characters)
     {
         pelea.Pelea(characters);
+    }
+
+    public void Events(List<Personaje> characters, int numberOfEvent)
+    {
+        
     }
     
     
