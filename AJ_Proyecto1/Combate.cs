@@ -41,13 +41,23 @@ public class Combate
                 while (objetivo == i || personajes[objetivo].vida <= 0);
                 personajes[objetivo].vecesSeleccionado++;
 
-                int daño = ElegirAtaque(personajes[i], original);
-                personajes[objetivo].vida -= daño;
                 if (original[0].comment || personajes[i] == original[0] || personajes[objetivo] == original[0] ||
-                    !(original[0].player))
+                    !(original[0].player)) 
+
+                
                 {
-                    Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
-                    Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
+                    if (personajes[objetivo].chapita > LanzarDado())
+                    {
+                        Console.WriteLine($"{personajes[i].nombre} N0 ha hecho daño WOMP WOMP.");
+                    }
+                    else
+                    {
+                        
+                        int daño = ElegirAtaque(personajes[i], original);
+                        personajes[objetivo].vida -= daño;
+                        Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
+                        Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
+                    }
                 }
 
                 if (personajes[objetivo].vida <= 0)
@@ -105,6 +115,7 @@ public class Combate
 
             
             Console.WriteLine($"{p.nombre} ha escogido: " + p.ataques[numero-1].nombreAtaque);
+            
             
             return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
