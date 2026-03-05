@@ -12,6 +12,7 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public int sabiduria;   //Druida
     public int carisma; //Brujo
     public int vida = 8;
+    public int chapita = 10;
     public int iniciativa;
     public bool player;
     public bool comment;
@@ -38,7 +39,6 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     {
         
         int position = rndPosition.Next(1,1 + maxPosicion); 
-        
         return position;
     }
 }

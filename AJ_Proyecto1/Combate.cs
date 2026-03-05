@@ -72,11 +72,11 @@ public class Combate
         p1.iniciativa = LanzarDado(p1.destreza);
     }
 
-    private int LanzarDado(int atributo, int tipoDado=20)
+    private int LanzarDado(int atributo = 10, int tipoDado=20)
     {
         int modificador = (int)Math.Floor((atributo - 10) / 2.0); //Lo que hace (int)Math.Floor() es truncar hacia abajo
         int dado = rng.Next(1,tipoDado+1);
-
+        
         if ((dado + modificador) <= 0)
         {
             //Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
@@ -117,7 +117,6 @@ public class Combate
                 Console.WriteLine($"{p.nombre} ha escogido: " + p.ataques[numero-1].nombreAtaque);
 
             }
-
             return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
     }

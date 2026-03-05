@@ -39,7 +39,7 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
         
         // Ajuste de vida según Constitución
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
-
+        this.chapita += (int)Math.Floor((destreza - 10) / 2.0);
         this.player = player;
         this.comment = comment;
     }
