@@ -17,7 +17,7 @@ class Program
         
         do
         {
-            message = GetConsoleMessage("### Welcome to NBAttleRoyale ### \n Do you wanna play? (Y/N)").ToUpper();;
+            message = GetConsoleMessage("### Welcome to NBAttleRoyale ### \n Do you wanna play? (Y/N)").ToUpper();
             if(message != "Y" && message != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
         } while (message != "Y" && message != "N");
         Console.Clear();
@@ -42,7 +42,7 @@ class Program
         {
             do
             {
-                comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();;
+                comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();
                 if(comments != "Y" && comments != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
             } while (comments != "Y" && comments != "N");
             Console.Clear();
