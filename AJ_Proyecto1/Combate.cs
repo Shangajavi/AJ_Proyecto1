@@ -4,7 +4,6 @@ public class Combate
 {
     
     //Atributos
-    public List<Personaje> personasInvolucradas = new List<Personaje>();
     private Random rng = new Random();
     
     public void Pelea(List<Personaje> personajes)
@@ -12,7 +11,10 @@ public class Combate
         foreach (Personaje personaje in personajes)
         {
             Iniciativa(personaje);
-            Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa);
+            if (personaje.comment || personaje == personajes[0])
+            {
+                Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa);
+            }
         }
 
         while (personajes.Count > 1)
@@ -39,9 +41,11 @@ public class Combate
 
                 int daño = ElegirAtaque(personajes[i]);
                 personajes[objetivo].vida -= daño;
-                
-                Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
-                Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
+                if (personajes[0].comment || personajes[i]==personajes[0])
+                {
+                    Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
+                    Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
+                }
 
                 if (personajes[objetivo].vida <= 0)
                     muertos.Add(personajes[objetivo]);
@@ -68,12 +72,12 @@ public class Combate
 
         if ((dado + modificador) <= 0)
         {
-            Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
+            //Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
             return 0;
         }
         else
         {
-            Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
+            //Console.WriteLine($"Dado: {dado}, Modificador: {modificador}");
             return dado + modificador;
         }
     }
