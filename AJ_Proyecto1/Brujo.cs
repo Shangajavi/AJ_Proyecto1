@@ -29,7 +29,7 @@ public class Brujo : Personaje
         ataques.Add(brazosdeHadar);
         
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
-        this.chapita += (int)Math.Floor((destreza - 10) / 2.0);
+        this.chapita += (int)Math.Floor(((destreza - 10) / 2.0)-2);
         this.player = player;
         this.comment = comment;
     }

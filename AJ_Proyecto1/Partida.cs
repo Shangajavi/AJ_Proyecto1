@@ -20,6 +20,22 @@ public class Partida
         List<Personaje> finalZone = new List<Personaje>();
         
         SplitOnSections(zone1,zone2,zone3,zone4, characters);
+        Console.WriteLine("Pelea en zona 1");
+        FightingOnThisSection(zone1,0,1);
+        Console.WriteLine("Pelea en zona 2");
+        FightingOnThisSection(zone2,2,3);
+        Console.WriteLine("Pelea en zona 3");
+        FightingOnThisSection(zone3,4,5);
+        Console.WriteLine("Pelea en zona 4");
+        FightingOnThisSection(zone4,6,7);
+        
+        finalZone.AddRange(zone1);
+        finalZone.AddRange(zone2);
+        finalZone.AddRange(zone3);
+        finalZone.AddRange(zone4);
+        
+        Console.WriteLine("Pelea en zona final");
+        FightingOnThisSection(finalZone,8,9);
     }
 
     public void Events(List<Personaje> characters, int numberOfEvent)
@@ -205,8 +221,25 @@ public class Partida
 
     }
 
-    private void FightingOnThisSection(List<Personaje> characters)
+    private void FightingOnThisSection(List<Personaje> characters, int event1, int event2)
     {
-        pelea.Pelea(characters);
+        int turno = 0;
+        int turnoEvento = rng.Next(0, 3);
+        while (characters.Count > 1)
+        {
+            Console.WriteLine("Turno " + turno+1);
+            if (turno == turnoEvento)
+            {
+                Events(characters, rng.Next(event1,event2+1));
+                turno = 0;
+                turnoEvento = rng.Next(0, 3);
+            }
+            pelea.Pelea(characters,turno);
+            turno++;
+            Console.ReadKey();
+            Console.Clear();
+            
+        }
+        
     }
 }

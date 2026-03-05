@@ -6,74 +6,98 @@ public class Combate
     //Atributos
     private Random rng = new Random();
     
-    public void Pelea(List<Personaje> personajes)
+    public void Pelea(List<Personaje> personajes,int turno)
     {
         List<Personaje> original = new List<Personaje>(personajes);
         
-        foreach (Personaje personaje in personajes)
+        if (turno == 0)
         {
-            Iniciativa(personaje);
-            if (personaje.comment || personaje == personajes[0])
+        
+            foreach (Personaje personaje in personajes)
             {
-                Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa + " en iniciativa");
+                Iniciativa(personaje);
+                if (personaje.comment || personaje == personajes[0])
+                {
+                    Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa + " en iniciativa");
+                }
             }
-        }
 
-        while (personajes.Count > 1)
-        {
+        
             personajes.Sort((a, b) => b.iniciativa.CompareTo(a.iniciativa));
-
-            List<Personaje> muertos = new List<Personaje>();
-
-            for (int i = 0; i < personajes.Count; i++)
-            {
-                if (personajes[i].vida <= 0)
-                    continue;
-
-                if (personajes.Count == 1)
-                    break;
-
-                int objetivo;
-                do
-                {
-                    objetivo = rng.Next(0, personajes.Count);
-                }
-                while (objetivo == i || personajes[objetivo].vida <= 0);
-                personajes[objetivo].vecesSeleccionado++;
-
-                if (original[0].comment || personajes[i] == original[0] || personajes[objetivo] == original[0] ||
-                    !(original[0].player)) 
-
-                
-                {
-                    if (personajes[objetivo].chapita > LanzarDado())
-                    {
-                        Console.WriteLine($"{personajes[i].nombre} N0 ha hecho daño WOMP WOMP.");
-                    }
-                    else
-                    {
-                        
-                        int daño = ElegirAtaque(personajes[i], original);
-                        personajes[objetivo].vida -= daño;
-                        Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
-                        Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
-                    }
-                }
-
-                if (personajes[objetivo].vida <= 0)
-                    muertos.Add(personajes[objetivo]);
-            }
-
-            foreach (var muerto in muertos)
-            {
-                Console.WriteLine("Han muerto: " + muerto.nombre);
-                personajes.Remove(muerto);
-            }
         }
         
-        Console.WriteLine("Ha ganado: " + personajes[0].nombre + ", que se ha quedado con: " 
-                          + personajes[0].vida + " , que lo han seleccionado: " 
-                          + personajes[0].vecesSeleccionado);
+
+        List<Personaje> muertos = new List<Personaje>();
+
+        for (int i = 0; i < personajes.Count; i++)
+        {
+            if (personajes[i].vida <= 0)
+                continue;
+
+            if (personajes.Count == 1)
+                break;
+
+            int objetivo;
+            do
+            {
+                objetivo = rng.Next(0, personajes.Count);
+            }
+            while (objetivo == i || personajes[objetivo].vida <= 0);
+            personajes[objetivo].vecesSeleccionado++;
+
+            bool mostrar =
+                original[0].comment || 
+                personajes[i] == original[0] || 
+                personajes[objetivo] == original[0] || 
+                !original[0].player;
+
+            bool falla = personajes[objetivo].chapita > LanzarDado();
+
+            if (mostrar)
+            {
+                int daño = ElegirAtaque(personajes[i], original);
+                if (falla)
+                {
+                    Console.WriteLine($"{personajes[i].nombre} NO ha hecho daño a {personajes[objetivo].nombre}. WOMP WOMP.");
+                }
+                else
+                {
+                    personajes[objetivo].vida -= daño;
+
+                    Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
+                    Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
+                }
+            }
+            else
+            {
+                int daño = ElegirAtaque(personajes[i], original);
+                if (!falla)
+                {
+                    personajes[objetivo].vida -= daño;
+                }
+            }
+
+            if (personajes[objetivo].vida <= 0)
+                muertos.Add(personajes[objetivo]);
+        }
+
+        if (muertos.Count == 0)
+        {
+            Console.WriteLine("No ha muerto nadie");
+        }
+        
+        foreach (var muerto in muertos)
+        {
+            Console.WriteLine("Han muerto: " + muerto.nombre);
+            personajes.Remove(muerto);
+        }
+
+        if (personajes.Count == 1)
+        {
+            Console.WriteLine("Ha ganado: " + personajes[0].nombre + ", que se ha quedado con: " 
+                              + personajes[0].vida + " , que lo han seleccionado: " 
+                              + personajes[0].vecesSeleccionado);
+        }
         Thread.Sleep(3000);
     }
 
