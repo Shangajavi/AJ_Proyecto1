@@ -1,141 +1,209 @@
 ﻿namespace AJ_Proyecto1;
 
-
 class Program
 {
     static Random rng = new Random();
     
     static void Main(string[] args)
     {
-        
-        string message, comments, playerClass;
-        int numCharacter;
-        bool comment,valido;
-        Personaje player;
-        Partida game;
-        List<Personaje> characterList = new List<Personaje>();
-        
+        string mensaje, comentarios, claseJugador;
+        int numPersonajes;
+        bool comment, valido;
+        Personaje jugador;
+        Partida partida;
+        List<Personaje> listaPersonajes = new List<Personaje>();
+
         do
         {
-            message = GetConsoleMessage("### Welcome to NBAttleRoyale ### \n Do you wanna play? (Y/N)").ToUpper();
-            if(message != "Y" && message != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
-        } while (message != "Y" && message != "N");
+            mensaje = GetConsoleMessage("### Bienvenido a NBAttleRoyale ###\n¿Quieres jugar? (Y/N)").ToUpper();
+
+            if (mensaje != "Y" && mensaje != "N")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Escribe Y para sí o N para no. No hay tercera opción.");
+                Console.ResetColor();
+            }
+
+        } while (mensaje != "Y" && mensaje != "N");
+
         Console.Clear();
 
         do
         {
-            Console.Write("Pick a number of Characters on this game (10-100): ");
-            valido = int.TryParse(Console.ReadLine(), out numCharacter);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Elige cuántos personajes participarán en esta masacre (10-100): ");
+            Console.ResetColor();
+
+            valido = int.TryParse(Console.ReadLine(), out numPersonajes);
 
             if (!valido)
-                Console.WriteLine("You need to write a number.");
-            else if (numCharacter < 10 || numCharacter > 100)
-                Console.WriteLine("The number need to be between 10 and 100.");
-        }
-        while (!valido || numCharacter < 10 || numCharacter > 100);
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Eso no es un número. Inténtalo otra vez.");
+                Console.ResetColor();
+            }
+            else if (numPersonajes < 10 || numPersonajes > 100)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("El número debe estar entre 10 y 100. No te emociones.");
+                Console.ResetColor();
+            }
 
-        Console.WriteLine("Number Accepted: " + numCharacter);
+        } while (!valido || numPersonajes < 10 || numPersonajes > 100);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Número aceptado: " + numPersonajes);
+        Console.ResetColor();
+
         Thread.Sleep(1000);
         Console.Clear();
-        
-        if (message == "Y")
+
+        if (mensaje == "Y")
         {
             do
             {
-                comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();
-                if(comments != "Y" && comments != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
-            } while (comments != "Y" && comments != "N");
+                comentarios = GetConsoleMessage("¿Quieres ver todas las acciones y peleas de los demás personajes? (Y/N)").ToUpper();
+
+                if (comentarios != "Y" && comentarios != "N")
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Responde con Y o N. Prometo que solo hay dos opciones.");
+                    Console.ResetColor();
+                }
+
+            } while (comentarios != "Y" && comentarios != "N");
+
             Console.Clear();
 
-            if (comments == "Y") comment = true;
-            else comment = false;
+            comment = comentarios == "Y";
+
             do
             {
-                playerClass = GetConsoleMessage("What class do you wanna play with? \n Barbarian (B) \n Sorcerer(S)" +
-                                                " \n Mage(M) \n Druid(D) \n Rogue(R)").ToUpper();
-            } while (playerClass != "B" && playerClass != "S" && playerClass != "M" && playerClass != "D" && playerClass != "R");
+                claseJugador = GetConsoleMessage(
+                    "¿Qué clase quieres jugar?\n" +
+                    "Bárbaro (B)\n" +
+                    "Hechicero (S)\n" +
+                    "Mago (M)\n" +
+                    "Druida (D)\n" +
+                    "Pícaro (R)"
+                ).ToUpper();
 
-            string name = GetConsoleMessage("Whats your name?: ");
-            
-            switch (playerClass)
+            } while (claseJugador != "B" && claseJugador != "S" && claseJugador != "M" && claseJugador != "D" && claseJugador != "R");
+
+            string nombre = GetConsoleMessage("¿Cuál es tu nombre, futuro campeón (o futura víctima)?: ");
+
+            switch (claseJugador)
             {
                 case "B":
-                    player = new Barbaro(name, true, comment);
-                    characterList.Add(player);
+                    jugador = new Barbaro(nombre, true, comment);
+                    listaPersonajes.Add(jugador);
                     break;
+
                 case "S":
-                    player = new Brujo(name, true, comment);
-                    characterList.Add(player);
+                    jugador = new Brujo(nombre, true, comment);
+                    listaPersonajes.Add(jugador);
                     break;
+
                 case "M":
-                    player = new Mago(name, true, comment);
-                    characterList.Add(player);
+                    jugador = new Mago(nombre, true, comment);
+                    listaPersonajes.Add(jugador);
                     break;
+
                 case "D":
-                    player = new Druida(name, true, comment);
-                    characterList.Add(player);
+                    jugador = new Druida(nombre, true, comment);
+                    listaPersonajes.Add(jugador);
                     break;
+
                 default:
-                    player = new Picaro(name, true, comment);
-                    characterList.Add(player);
+                    jugador = new Picaro(nombre, true, comment);
+                    listaPersonajes.Add(jugador);
                     break;
             }
+
             Console.Clear();
         }
-        
-        StartGameList(numCharacter, characterList);
-        Thread.Sleep(5000);
-        Console.WriteLine("### LETS THIS GAME STARTED!! ###");
-        game = new Partida(numCharacter);
-        game.StartGame(characterList);
-        
 
+        StartGameList(numPersonajes, listaPersonajes);
+
+        Thread.Sleep(5000);
+
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("### QUE COMIENCE LA BATALLA ###");
+        Console.ResetColor();
+
+        partida = new Partida(numPersonajes);
+        partida.StartGame(listaPersonajes);
     }
 
-    private static string GetConsoleMessage(string message)
+
+    private static string GetConsoleMessage(string mensaje)
     {
-        Console.WriteLine(message);
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(mensaje);
+        Console.ResetColor();
+
         return Console.ReadLine();
     }
 
-    private static void StartGameList(int numCharacters, List<Personaje> characterList)
+
+    private static void StartGameList(int numPersonajes, List<Personaje> listaPersonajes)
     {
         Personaje npc;
-        int barb = 0, sorc = 0, mage = 0, drui = 0, rogu = 0;
-        if (characterList.Count == 1)
+
+        int barbaros = 0;
+        int hechiceros = 0;
+        int magos = 0;
+        int druidas = 0;
+        int picaros = 0;
+
+        if (listaPersonajes.Count == 1)
         {
-            numCharacters -= 1;
+            numPersonajes -= 1;
         }
-        for (int i = 0; i < numCharacters; i++)
+
+        for (int i = 0; i < numPersonajes; i++)
         {
-            int numClass = rng.Next(1, 6);
-            
-            switch (numClass)
+            int numClase = rng.Next(1, 6);
+
+            switch (numClase)
             {
                 case 1:
-                    npc = new Barbaro("Barbarian"+ barb++);
-                    characterList.Add(npc);
+                    npc = new Barbaro("Bárbaro " + barbaros++);
+                    listaPersonajes.Add(npc);
                     break;
+
                 case 2:
-                    npc = new Brujo("Sorcerer" + sorc++);
-                    characterList.Add(npc);
+                    npc = new Brujo("Hechicero " + hechiceros++);
+                    listaPersonajes.Add(npc);
                     break;
+
                 case 3:
-                    npc = new Mago("Mage" + mage++);
-                    characterList.Add(npc);
+                    npc = new Mago("Mago " + magos++);
+                    listaPersonajes.Add(npc);
                     break;
+
                 case 4:
-                    npc = new Druida("Druid" + drui ++);
-                    characterList.Add(npc);
+                    npc = new Druida("Druida " + druidas++);
+                    listaPersonajes.Add(npc);
                     break;
+
                 default:
-                    npc = new Picaro("Rogue" + rogu++);
-                    characterList.Add(npc);
+                    npc = new Picaro("Pícaro " + picaros++);
+                    listaPersonajes.Add(npc);
                     break;
             }
         }
-        
-        Console.WriteLine("Barbarians: " + barb + " Sorcerer: " + sorc + " Mage: "
-            + mage + " Druids: " + drui + " Rogues: " + rogu + ", Total characters: "+ characterList.Count);
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+
+        Console.WriteLine("Participantes generados:");
+        Console.WriteLine("Bárbaros: " + barbaros);
+        Console.WriteLine("Hechiceros: " + hechiceros);
+        Console.WriteLine("Magos: " + magos);
+        Console.WriteLine("Druidas: " + druidas);
+        Console.WriteLine("Pícaros: " + picaros);
+        Console.WriteLine("Total de combatientes: " + listaPersonajes.Count);
+
+        Console.ResetColor();
     }
 }

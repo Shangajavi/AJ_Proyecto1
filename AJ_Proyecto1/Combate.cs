@@ -18,8 +18,9 @@ public class Combate
                 Iniciativa(personaje);
                 if (personaje.comment || personaje == personajes[0])
                 {
-                    Console.WriteLine(personaje.nombre + " ha sacado: " + personaje.iniciativa + " en iniciativa");
-                }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{personaje.nombre} ha sacado {personaje.iniciativa} en iniciativa");
+                    Console.ResetColor();                }
             }
 
         
@@ -58,14 +59,20 @@ public class Combate
                 int daño = ElegirAtaque(personajes[i], original);
                 if (falla)
                 {
-                    Console.WriteLine($"{personajes[i].nombre} NO ha hecho daño a {personajes[objetivo].nombre}. WOMP WOMP.");
-                }
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"{personajes[i].nombre} NO ha hecho daño a {personajes[objetivo].nombre}... WOMP WOMP.");
+                    Console.ResetColor();                }
                 else
                 {
                     personajes[objetivo].vida -= daño;
 
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
+                    Console.ResetColor();
+
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
+                    Console.ResetColor();
                 }
             }
             else
@@ -83,20 +90,28 @@ public class Combate
 
         if (muertos.Count == 0)
         {
-            Console.WriteLine("No ha muerto nadie");
-        }
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("No ha muerto nadie este turno...");
+            Console.ResetColor();        }
         
         foreach (var muerto in muertos)
         {
-            Console.WriteLine("Han muerto: " + muerto.nombre);
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine($"Ha muerto: {muerto.nombre}");
+            Console.ResetColor();
             personajes.Remove(muerto);
         }
 
         if (personajes.Count == 1)
         {
-            Console.WriteLine("Ha ganado: " + personajes[0].nombre + ", que se ha quedado con: " 
-                              + personajes[0].vida + " , que lo han seleccionado: " 
-                              + personajes[0].vecesSeleccionado);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ha ganado: {personajes[0].nombre}");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"Vida restante: {personajes[0].vida}");
+            Console.WriteLine($"Veces que lo han seleccionado: {personajes[0].vecesSeleccionado}");
+            Console.ResetColor();
         }
         Thread.Sleep(3000);
     }
@@ -129,8 +144,9 @@ public class Combate
         {
             for (int i = 1; i < p.ataques.Count+1; i++)
             {
-                Console.WriteLine("Ataque "+ i +": " + p.ataques[i-1].nombreAtaque);
-            }
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine($"Ataque {i}: {p.ataques[i-1].nombreAtaque}");
+                Console.ResetColor();            }
             int numero;
             while (!int.TryParse(Console.ReadLine(), out numero) || numero < 1 || numero > p.ataques.Count)
             {
@@ -138,8 +154,9 @@ public class Combate
             }
 
             
-            Console.WriteLine($"{p.nombre} ha escogido: " + p.ataques[numero-1].nombreAtaque);
-            
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"{p.nombre} ha escogido: {p.ataques[numero-1].nombreAtaque}");
+            Console.ResetColor();            
             
             return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
@@ -149,8 +166,9 @@ public class Combate
             if (characters[0].comment ||
                 !(characters[0].player))
             {
-                Console.WriteLine($"{p.nombre} ha escogido: " + p.ataques[numero-1].nombreAtaque);
-
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"{p.nombre} ha escogido: {p.ataques[numero-1].nombreAtaque}");
+                Console.ResetColor();
             }
             return LanzarDado(p.ataques[numero-1].atributo, p.ataques[numero-1].caraDedados);
         }
