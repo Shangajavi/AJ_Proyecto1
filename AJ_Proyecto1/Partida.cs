@@ -227,7 +227,7 @@ public class Partida
         int turnoEvento = rng.Next(0, 3);
         while (characters.Count > 1)
         {
-            Console.WriteLine("Turno " + turno+1);
+            Console.WriteLine("Turno " + (turno+1));
             if (turno == turnoEvento)
             {
                 Events(characters, rng.Next(event1,event2+1));

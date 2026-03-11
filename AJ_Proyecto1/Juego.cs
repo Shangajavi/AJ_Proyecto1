@@ -1,6 +1,6 @@
 ﻿namespace AJ_Proyecto1;
 
-public class Game
+public class Juego
 {
     Random rng = new Random();
     
