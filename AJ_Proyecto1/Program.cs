@@ -18,10 +18,8 @@ class Program
         do
         {
             message = GetConsoleMessage("### Welcome to NBAttleRoyale ### \n Do you wanna play? (Y/N)").ToUpper();
-            if(message != "Y" && message != "N" && message !="Q") Console.WriteLine("Please, put Y(Yes) or N(No)");
-            if (message == "Q") Quitting(true);
-
-        } while (message != "Y" && message != "N" && message !="Q");
+            if(message != "Y" && message != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
+        } while (message != "Y" && message != "N");
         Console.Clear();
 
         do
@@ -45,8 +43,7 @@ class Program
             do
             {
                 comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();
-                if(comments != "Y" && comments != "N" && comments != "Q") Console.WriteLine("Please, put Y(Yes) or N(No)");
-                if (comments == "Q") Quitting(true);
+                if(comments != "Y" && comments != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
             } while (comments != "Y" && comments != "N");
             Console.Clear();
 
@@ -140,19 +137,5 @@ class Program
         
         Console.WriteLine("Barbarians: " + barb + " Sorcerer: " + sorc + " Mage: "
             + mage + " Druids: " + drui + " Rogues: " + rogu + ", Total characters: "+ characterList.Count);
-    }
-
-    private static void Quitting(bool quit = false)
-    {
-        if (quit == false)
-        {
-            Console.WriteLine("Hago algo mal");
-            Environment.Exit(0);
-        }
-        if (quit == true)
-        {
-            Console.WriteLine("Saliendo...");
-            Environment.Exit(0);
-        }
     }
 }
