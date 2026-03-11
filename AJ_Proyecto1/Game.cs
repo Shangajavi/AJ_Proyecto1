@@ -1,13 +1,12 @@
 ﻿namespace AJ_Proyecto1;
 
-
-class Program
+public class Game
 {
-    private static Game juego = new Game();
-    static void Main(string[] args)
+    Random rng = new Random();
+    
+    public void GameStarted()
     {
-<<<<<<< Updated upstream
-        
+     
         string message, comments, playerClass;
         int numCharacter;
         bool comment,valido;
@@ -18,8 +17,10 @@ class Program
         do
         {
             message = GetConsoleMessage("### Welcome to NBAttleRoyale ### \n Do you wanna play? (Y/N)").ToUpper();
-            if(message != "Y" && message != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
-        } while (message != "Y" && message != "N");
+            if(message != "Y" && message != "N" && message !="Q") Console.WriteLine("Please, put Y(Yes) or N(No)");
+            if (message == "Q") Quitting(true);
+
+        } while (message != "Y" && message != "N" && message !="Q");
         Console.Clear();
 
         do
@@ -43,7 +44,8 @@ class Program
             do
             {
                 comments = GetConsoleMessage("Do you want to see the other actions and fights? (Y/N)").ToUpper();
-                if(comments != "Y" && comments != "N") Console.WriteLine("Please, put Y(Yes) or N(No)");
+                if(comments != "Y" && comments != "N" && comments != "Q") Console.WriteLine("Please, put Y(Yes) or N(No)");
+                if (comments == "Q") Quitting(true);
             } while (comments != "Y" && comments != "N");
             Console.Clear();
 
@@ -90,15 +92,17 @@ class Program
         game.StartGame(characterList);
         
 
-    }
+    
 
-    private static string GetConsoleMessage(string message)
+    }
+    
+    private string GetConsoleMessage(string message)
     {
         Console.WriteLine(message);
         return Console.ReadLine();
     }
 
-    private static void StartGameList(int numCharacters, List<Personaje> characterList)
+    private void StartGameList(int numCharacters, List<Personaje> characterList)
     {
         Personaje npc;
         int barb = 0, sorc = 0, mage = 0, drui = 0, rogu = 0;
@@ -137,8 +141,19 @@ class Program
         
         Console.WriteLine("Barbarians: " + barb + " Sorcerer: " + sorc + " Mage: "
             + mage + " Druids: " + drui + " Rogues: " + rogu + ", Total characters: "+ characterList.Count);
-=======
-        juego.GameStarted();
->>>>>>> Stashed changes
+    }
+
+    private void Quitting(bool quit = false)
+    {
+        if (quit == false)
+        {
+            Console.WriteLine("Hago algo mal");
+            Environment.Exit(0);
+        }
+        if (quit == true)
+        {
+            Console.WriteLine("Saliendo...");
+            Environment.Exit(0);
+        }
     }
 }
