@@ -69,7 +69,6 @@ public class Combate
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{personajes[i].nombre} hace {daño} de daño a {personajes[objetivo].nombre}");
                     Console.ResetColor();
-
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine($"Vida restante de {personajes[objetivo].nombre}: {personajes[objetivo].vida}");
                     Console.ResetColor();
