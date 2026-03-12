@@ -6,7 +6,7 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
     public Ataque FireBall;
     public Ataque Rayo;
     public Ataque Bastonazo;
-    public Ataque ArmaduraDeMago;
+    public Ataque RayoEscarchado;
 
     
     //No estoy seguro si esto es correcto, pero considero que esto está ma o menos bien...
@@ -26,12 +26,12 @@ public class Mago : Personaje //Estoy probando con la primera clase, que he llam
         this.FireBall = new Ataque("Fire Ball",8,inteligencia);
         this.Rayo = new Ataque("Rayo",12,inteligencia);
         this.Bastonazo = new Ataque("Bastonazo",6,fuerza);
-        this.ArmaduraDeMago = new Ataque("Armadura De Mago",6,constitucion);
+        this.RayoEscarchado = new Ataque("Rayo Escarchado",8,inteligencia);
         
         ataques.Add(FireBall);
         ataques.Add(Rayo);
         ataques.Add(Bastonazo);
-        ataques.Add(ArmaduraDeMago);
+        ataques.Add(RayoEscarchado);
         
         
         

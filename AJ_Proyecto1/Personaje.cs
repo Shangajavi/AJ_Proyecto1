@@ -16,9 +16,6 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
     public int iniciativa;
     public bool player;
     public bool comment;
-    public int maxPosicion;
-    private bool isSomeoneHere;
-    private Random rndPosition = new  Random();
     public List<Ataque> ataques = new List<Ataque>();
     public int vecesSeleccionado=0;
 
@@ -29,16 +26,7 @@ public class Personaje  //Aquí introduzco los atributos básicos de cada person
         this.nombre = nombre; 
         this.player = player;
         this.comment = comment;
-        
-        int x = Posicion();
-        int y = Posicion();
 
     }
-
-    public int Posicion()
-    {
-        
-        int position = rndPosition.Next(1,1 + maxPosicion); 
-        return position;
-    }
+    
 }

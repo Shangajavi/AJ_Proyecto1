@@ -5,7 +5,7 @@ public class Picaro : Personaje
     public Ataque ataqueFurtivo;
     public Ataque armaArrojadiza;
     public Ataque cortes;
-    public Ataque accionesAstutas;
+    public Ataque insultosAstutos;
 
     public Picaro(string nombre, bool player = false, bool comment = false) : base(nombre,player,comment)
     {
@@ -20,12 +20,12 @@ public class Picaro : Personaje
         this.ataqueFurtivo = new Ataque("Ataque Furtivo",6,destreza);
         this.armaArrojadiza = new Ataque("Arma Arrojadiza",4,destreza);
         this.cortes = new Ataque("Cortes",8,destreza);
-        this.accionesAstutas = new Ataque("Acciones Astutas",6,destreza);//aumenta CA
+        this.insultosAstutos = new Ataque("Insultos Astutos",8,carisma);
         
         ataques.Add(ataqueFurtivo);
         ataques.Add(armaArrojadiza);
         ataques.Add(cortes);
-        ataques.Add(accionesAstutas);
+        ataques.Add(insultosAstutos);
         
         this.vida += (int)Math.Floor((constitucion - 10) / 2.0);
         this.chapita += (int)Math.Floor(((destreza - 10) / 2.0)-2);

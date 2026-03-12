@@ -4,7 +4,7 @@ public class Barbaro : Personaje
 {
     public Ataque ataqueConFuerza;
     public Ataque bofeton;
-    public Ataque furia;
+    public Ataque patadon;
     public Ataque lanzarLanza;
     
 
@@ -22,12 +22,12 @@ public class Barbaro : Personaje
         
         this.ataqueConFuerza = new Ataque("Ataque Con Fuerza",12,fuerza);
         this.bofeton = new Ataque("Bofeton",8,fuerza);
-        this.furia = new Ataque("Furia",6,fuerza);
+        this.patadon = new Ataque("Patadon",6,fuerza);
         this.lanzarLanza = new Ataque("Lanzar Lanza",6,fuerza);
         
         ataques.Add(ataqueConFuerza);
         ataques.Add(bofeton);
-        ataques.Add(furia);
+        ataques.Add(patadon);
         ataques.Add(lanzarLanza);
         
         
